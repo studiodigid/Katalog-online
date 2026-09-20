@@ -3,7 +3,7 @@ import type { Lang } from './data/copy';
 export const DEMO_URL = 'https://3d.digidstudio.com';
 
 export const HERO_GLB_URL =
-  'https://ik.imagekit.io/digidstudio/mjv3.web.opt.glb';
+  'https://ik.imagekit.io/digidstudio/camisa_internacional_retro_free.web.opt.glb?updatedAt=1789906641426';
 
 export const DRACO_DECODER_PATH = 'https://www.gstatic.com/draco/versioned/decoders/1.5.7/';
 

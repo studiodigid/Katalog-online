@@ -1,6 +1,6 @@
 import type { Lang } from './data/copy';
 
-export const DEMO_URL = 'https://store.digidstudio.com';
+export const DEMO_URL = 'https://3d.digidstudio.com';
 
 export const HERO_GLB_URL =
   'https://ik.imagekit.io/digidstudio/camisa_internacional_retro_free.web.opt.glb?updatedAt=1789906641426';

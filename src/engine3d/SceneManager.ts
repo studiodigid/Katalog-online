@@ -2,8 +2,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
-import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
 /**
  * Catalog SceneManager.
@@ -60,7 +58,6 @@ export class SceneManager {
   private currentGLBGroup: THREE.Group | null = null;
   private groundObjects: THREE.Mesh[] = [];
   private dracoLoader: DRACOLoader | null = null;
-  private ktx2Loader: KTX2Loader | null = null;
   private gltfLoader: GLTFLoader | null = null;
   private resizeObserver: ResizeObserver | null = null;
   private animationFrameId: number | null = null;
@@ -210,19 +207,10 @@ export class SceneManager {
 
   private getGLTFLoader(dracoDecoderPath: string): GLTFLoader {
     if (!this.gltfLoader) {
-      // File .glb "web optimized" bisa memakai salah satu dari tiga kompresi berikut.
-      // Semuanya didukung supaya model apa pun bisa diganti tanpa mengubah kode.
       this.dracoLoader = new DRACOLoader();
-      this.dracoLoader.setDecoderPath(dracoDecoderPath); // kompresi geometri: Draco
-
-      this.ktx2Loader = new KTX2Loader();
-      this.ktx2Loader.setTranscoderPath(`${import.meta.env.BASE_URL}basis/`); // tekstur KTX2 (file ada di /public/basis)
-      this.ktx2Loader.detectSupport(this.renderer);
-
+      this.dracoLoader.setDecoderPath(dracoDecoderPath);
       this.gltfLoader = new GLTFLoader();
       this.gltfLoader.setDRACOLoader(this.dracoLoader);
-      this.gltfLoader.setKTX2Loader(this.ktx2Loader);
-      this.gltfLoader.setMeshoptDecoder(MeshoptDecoder); // kompresi geometri: Meshopt (gltfpack)
     }
     return this.gltfLoader;
   }
@@ -427,8 +415,6 @@ export class SceneManager {
 
     this.dracoLoader?.dispose();
     this.dracoLoader = null;
-    this.ktx2Loader?.dispose();
-    this.ktx2Loader = null;
     this.gltfLoader = null;
 
     this.controls.removeEventListener('start', this.handleControlsStart);

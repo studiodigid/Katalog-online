@@ -3,7 +3,7 @@ import type { Lang } from './data/copy';
 export const DEMO_URL = 'https://3d.digidstudio.com';
 
 export const HERO_GLB_URL =
-  'https://ik.imagekit.io/digidstudio/glb%20Style3D%20Baseball%20Jacket%20v1.0-optimized.glb';
+  'https://ik.imagekit.io/digidstudio/mjv3.web.opt.glb';
 
 export const DRACO_DECODER_PATH = 'https://www.gstatic.com/draco/versioned/decoders/1.5.7/';
 
